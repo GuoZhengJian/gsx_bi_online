@@ -1,0 +1,39 @@
+[
+  {
+    "account": "gsxbi",
+    "password": "gsx987682",
+    "region": "全国区域",
+    "url": "https://manage.acewill.net/"
+  },
+  {
+    "account": "gsxbi_huabei",
+    "password": "gsx765423",
+    "region": "华北区域",
+    "url": null
+  },
+  {
+    "account": "gsxbi_huadong",
+    "password": "gsx986523",
+    "region": "华东区域",
+    "url": null
+  },
+  {
+    "account": "gsxbi_huanan",
+    "password": "gsx978675",
+    "region": "华南区域",
+    "url": null
+  },
+  {
+    "account": "gsxbi_huaxi",
+    "password": "gsx765523",
+    "region": "华西区域",
+    "url": null
+  },
+  {
+    "account": "gsxbi_huazhong",
+    "password": "gsx112356",
+    "region": "华中区域",
+    "url": null
+  }
+]
+
