@@ -54,14 +54,12 @@ export default async function PortalPage({ searchParams }: PortalPageProps) {
           退出登录
         </a>
       </header>
-      <main className="flex-1 p-4">
-        <div className="h-full w-full overflow-hidden rounded-xl border border-zinc-200 bg-black/5 shadow-sm dark:border-zinc-800 dark:bg-black/40">
-          <iframe
-            src={url ?? undefined}
-            title="访问链接"
-            className="h-[calc(100vh-5rem)] w-full border-0"
-          />
-        </div>
+      <main className="flex-1">
+        <iframe
+          src={url ?? undefined}
+          title="访问链接"
+          className="h-[calc(100vh-3.5rem)] w-full border-0"
+        />
       </main>
     </div>
   );
