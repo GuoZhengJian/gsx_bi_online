@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import users from "../../../config/sign_in.json";
+import config from "../../../config/sign_in.json";
+
+const users = (config as { users: Record<string, unknown>[] }).users;
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,7 +16,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const user = (users as any[]).find((u) => u.account === account);
+    const user = users.find((u) => u.account === account);
 
     if (!user) {
       return NextResponse.json(

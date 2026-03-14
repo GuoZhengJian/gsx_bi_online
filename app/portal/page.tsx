@@ -1,4 +1,7 @@
-import users from "../../config/sign_in.json";
+import config from "../../config/sign_in.json";
+import PowerBiEmbed from "./PowerBiEmbed";
+
+const users = (config as { users: { account: string }[] }).users;
 
 interface PortalPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -20,24 +23,12 @@ export default async function PortalPage({ searchParams }: PortalPageProps) {
     );
   }
 
-  const user = (users as any[]).find((u) => u.account === account);
-  let url: string | null = null;
-  let error: string | null = null;
-
+  const user = users.find((u) => u.account === account);
   if (!user) {
-    error = "未找到该账号的访问链接";
-  } else {
-    url = user.url ?? null;
-    if (!url) {
-      error = "该账号未配置访问链接";
-    }
-  }
-
-  if (error) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-100 px-4 font-sans dark:bg-zinc-950">
         <div className="w-full max-w-md rounded-2xl bg-white p-8 text-center text-sm text-red-500 shadow-xl shadow-zinc-200/60 dark:bg-zinc-900 dark:text-red-400 dark:shadow-none">
-          {error}
+          未找到该账号的访问链接
         </div>
       </div>
     );
@@ -54,12 +45,10 @@ export default async function PortalPage({ searchParams }: PortalPageProps) {
           退出登录
         </a>
       </header>
-      <main className="flex-1">
-        <iframe
-          src={url ?? undefined}
-          title="访问链接"
-          className="h-[calc(100vh-3.5rem)] w-full border-0"
-        />
+      <main className="flex-1 min-h-0">
+        <div className="h-[calc(100vh-3.5rem)] w-full">
+          <PowerBiEmbed account={account} />
+        </div>
       </main>
     </div>
   );
