@@ -1,10 +1,12 @@
  "use client";
 
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams.get("next");
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,8 +39,11 @@ export default function Home() {
         return;
       }
 
-      // 登录成功后跳转，并把账号通过查询参数带过去
-      router.push(`/portal?account=${encodeURIComponent(account)}`);
+      const target =
+        nextUrl && nextUrl.startsWith("/portal")
+          ? nextUrl
+          : `/portal?account=${encodeURIComponent(account)}`;
+      router.push(target);
     } catch (err) {
       setError("网络错误，请稍后重试");
     } finally {

@@ -34,10 +34,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json(
+    const res = NextResponse.json(
       { success: true, message: "登录成功" },
       { status: 200 },
     );
+    res.cookies.set("portal_account", account, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+      sameSite: "lax",
+    });
+    return res;
   } catch (error) {
     console.error("Login error:", error);
     return NextResponse.json(
